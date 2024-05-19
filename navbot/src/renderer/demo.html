@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="mx-auto p-12 flex items-center justify-center">
+        <div class="icon__home absolute top-0 right-0 m-6">
+            <a href="clock.html"> <ion-icon name="home"></ion-icon></a>
+        </div>
+
+
+        <div class="container flex w-5/6 ">
+            <div class="components w-2/3 my-16">
+
+                <!-- <div class="btn btn__secondary"><p>Button</p></div> -->
+                <div class="goto-section ">
+                    <h1 class="text-3xl text-center  pb-8 text-gray-600">Frequently Asked</h1>
+                    <div class="flex items-center justify-center   gap-5">
+                        <div class="btn btn__primary" onclick="window.location.href = './pano/principal.html';">
+                            <p>Principal</p>
+                        </div>
+                        <div class="btn btn__primary" onclick="window.location.href = './pano/viceprincipal.html';">
+                            <p>Vice Principal</p>
+                        </div>
+                        <div class="btn btn__primary" onclick="window.location.href = './pano/bursar.html';">
+                            <p>Bursar</p>
+                        </div>
+                        <div class="btn btn__primary" onclick="window.location.href = './pano/asstbursar.html';">
+                            <p>Asst. Bursar</p>
+                        </div>
+                        <div class="btn btn__primary" onclick="window.location.href = './pano/office.html';">
+                            <p>Office</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="search mx-auto gap-8 ">
+
+                    <input type="text" class="search__input" id="searchInput" placeholder="Search...">
+                    <div class="search__icon">
+                        <ion-icon name="search"></ion-icon>
+                    </div>
+
+
+                    <div class="flex-col text-center">
+                        <div class="circle pl-24 " id="startRecognition">
+                            <span class="circle__btn">
+                                <ion-icon class="pause" name="mic"></ion-icon>
+                                <ion-icon class="play" name="mic-off"></ion-icon>
+                            </span>
+                            <span class="circle__back-1 paused"></span>
+                            <span class="circle__back-2 paused"></span>
+                        </div>
+                        <div class="">
+                            <p class="mic-text pt-10 ml-16 font-semibold text-2xl text-gray-700 w-48 ">Tap to Stop</p>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <div class="segmented-control mx-auto">
+
+                    <input type="radio" name="radio2" value="3" id="tab-1" checked />
+                    <label for="tab-1" class="segmented-control__1">
+                        <p>ALL</p>
+                    </label>
+
+                    <input type="radio" name="radio2" value="4" id="tab-2" />
+                    <label for="tab-2" class="segmented-control__2">
+                        <p>CE</p>
+                    </label>
+
+                    <input type="radio" name="radio2" value="5" id="tab-3" />
+                    <label for="tab-3" class="segmented-control__3">
+                        <p>CSE</p>
+                    </label>
+                    <input type="radio" name="radio2" value="5" id="tab-4" />
+                    <label for="tab-4" class="segmented-control__4">
+                        <p>ECE</p>
+                    </label>
+                    <input type="radio" name="radio2" value="5" id="tab-5" />
+                    <label for="tab-5" class="segmented-control__5">
+                        <p>EEE</p>
+                    </label>
+                    <input type="radio" name="radio2" value="5" id="tab-6" />
+                    <label for="tab-6" class="segmented-control__6">
+                        <p>ME</p>
+                    </label>
+                    <input type="radio" name="radio2" value="5" id="tab-7" />
+                    <label for="tab-7" class="segmented-control__7">
+                        <p>S&H</p>
+                    </label>
+
+                    <div class="segmented-control__color"></div>
+                </div>
+                
+                
+
+
+            </div>
+
+            <div class="w-1/3 border-gray-400 border-l  p-3  ">
+                <h1 class="text-2xl text-center  p-2 text-gray-600 ">Search Results</h1>
+                <div id="cards-container" class="overflow-y-auto p-2 rounded-md ">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        
+        /*  play button */
+        const play = document.querySelector('.play');
+        const pause = document.querySelector('.pause');
+        const playBtn = document.querySelector('.circle__btn');
+        const wave1 = document.querySelector('.circle__back-1');
+        const wave2 = document.querySelector('.circle__back-2');
+        const micText = document.querySelector('.mic-text');
+        playBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            pause.classList.toggle('visibility');
+            play.classList.toggle('visibility');
+            playBtn.classList.toggle('shadow');
+            wave1.classList.toggle('paused');
+            wave2.classList.toggle('paused');
+
+            if (wave1.classList.contains('paused')) {
+                micText.innerText = 'Tap to Speak';
+            } else {
+                micText.innerText = 'Tap to Stop';
+            }
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+            const SpeechRecognition =
+                window.SpeechRecognition || window.webkitSpeechRecognition;
+            const SpeechGrammarList =
+                window.SpeechGrammarList || window.webkitSpeechGrammarList;
+            const SpeechRecognitionEvent =
+                window.SpeechRecognitionEvent || window.webkitSpeechRecognitionEvent;
+            var transcript;
+
+            const colors = [
+                "bursar",
+                "anil",
+                "abraham",
+                "bisque",
+                "black",
+                "blue",
+                "brown",
+                "chocolate",
+                "coral",
+            ];
+            const grammar = `#JSGF V1.0; grammar colors; public <color> = ${colors.join(
+                " | "
+            )};`;
+            fetch('./js/keywords.json')
+  .then(response => response.json())
+  .then(data => {
+    // Use the imported data here
+    keywordsData= data;
+  })
+  .catch(error => {
+    console.error('Error loading JSON file:', error);
+  });
+            const recognition = new SpeechRecognition();
+            const speechRecognitionList = new SpeechGrammarList();
+            speechRecognitionList.addFromString(grammar, 1);
+
+            recognition.grammars = speechRecognitionList;
+            recognition.continuous = false;
+            recognition.lang = "en-US";
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 1;
+
+
+
+            document.getElementById("startRecognition").addEventListener("click", () => {
+                recognition.start();
+                console.log("Ready to receive a color command.");
+            });
+
+//             recognition.onresult = (event) => {
+//     const detectedWords = event.results[0][0].transcript
+//         .trim()
+//         .toLowerCase()
+//         .replace(/[^\w\s]+/gi, '') // Remove punctuation
+//         .split(/\s+/); // Split into words
+                
+//         console.log(`Text: ${event.results[0][0].transcript}`);
+//     console.log(detectedWords)
+
+//     for (const keyword in keywordsData) {
+//         const aliases = keywordsData[keyword].aliases;
+//         for (const alias of aliases) {
+//             // Check if any alias is included in detected words
+//             if (detectedWords.includes(alias.toLowerCase())) {
+//                 console.log(`Navigating to: ${keywordsData[keyword].keyword}`);
+//                 return;
+//             }
+//         }
+//     }
+// };
+ 
+
+// recognition.onresult = (event) => {
+//     const transcript = event.results[0][0].transcript
+//     .toLowerCase()
+//     .replace(/[^\w]+/gi, ''); // Remove punctuation and spaces
+// console.log(`Text: ${transcript}`);
+
+
+//     // Iterate over each keyword and its aliases
+//     for (const keyword in keywordsData) {
+//         const aliases = keywordsData[keyword].aliases;
+//         for (const alias of aliases) {
+//             // Construct a regular expression dynamically for each alias
+//             const regex = new RegExp(`\\b${alias.replace(/[^\w\s]+/gi, '')}\\b`, 'gi');
+//             // Test if the transcript contains the alias
+//             if (regex.test(transcript)) {
+//                 console.log(`Navigating to: ${keywordsData[keyword].keyword}`);
+//                 return;
+//             }
+//         }
+//     }
+// };
+
+recognition.onresult = (event) => {    const transcript = event.results[0][0].transcript.toLowerCase();
+    console.log(`Text: ${transcript}`);
+
+    // Iterate over each keyword and its aliases
+    for (const keyword in keywordsData) {
+        const aliases = keywordsData[keyword].aliases;
+        for (const alias of aliases) {
+            // Construct a regular expression dynamically for each alias
+            const regex = new RegExp(`\\b${alias.replace(/[^\w\s]+/gi, '')}\\b`, 'gi');
+            // Test if the transcript contains the alias
+            if (regex.test(transcript)) {
+                // console.log(`Navigating to: ${keywordsData[keyword].keyword}`);
+                window.location.href = keywordsData[keyword].link;
+                return;
+            }
+        }
+    }
+};
+
+
+            recognition.onspeechend = () => {
+                recognition.stop();
+                pause.classList.toggle('visibility');
+                play.classList.toggle('visibility');
+                playBtn.classList.toggle('shadow');
+                wave1.classList.toggle('paused');
+                wave2.classList.toggle('paused');
+
+                if (wave1.classList.contains('paused')) {
+                    micText.innerText = 'Tap to Speak';
+                } else {
+                    micText.innerText = 'Tap to Stop';
+                }
+            };
+
+            recognition.onnomatch = () => {
+                console.log("No match.");
+            };
+
+            recognition.onerror = (event) => {
+                console.log(`Error occurred in recognition: ${event.error}`);
+            };
+        });
+
+
+    </script>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="./js/script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,157 @@
+{
+    "principal": {
+        "aliases": [
+            "abrahamtmathew",
+            "abrahamsir",
+            "drabraham",
+            "principalsroom",
+            "principal",
+            "Principal Sir",
+            "Principal sir",
+            "abraham t mathew",
+            "principal office"
+        ],
+        "keyword": "principal",
+        "link":"./pano/principal.html"
+    },
+    "bursar": {
+        "aliases": [
+            "father john varghese",
+            "bursar office",
+            "bursar achan",
+            "father john",
+            "bursar room",
+            "bursar"
+        ],
+        "keyword": "bursar",
+        "link":"./pano/bursar.html"
+    },
+    "assistant_bursar": {
+        "aliases": [
+            "father thomas mukalumpurath",
+            "father thomas",
+            "thomas achan",
+            "assistant bursar",
+            "assistant bursar office",
+            "assistantbursarroom",
+            "assistant"
+        ],
+        "keyword": "assistant_bursar",
+        "link":"./pano/asstbursar.html"
+    },
+    "vicePrincipal": {
+        "aliases": [
+            "vice principal",
+            "vice"
+        ],
+        "keryword": "vicePrincipal",
+        "linrk":"./pano/viceprincipal.html"
+    },
+    "sernatus": {
+        "aliases": [
+           "senatus hall",
+            "senatus",
+           "senatus room"
+        ],
+        "keryword": "senatus",
+        "linrk":"./pano/senatushall.html"
+    },
+    "nurrsing": {
+        "aliases": ["nursing",
+            "nursing room",
+            "nurse",
+            "nursing station",
+            "sickroom"
+        ],
+        "keyword": "nursing",
+        "link":"./pano/nursing.html"
+    },
+    
+    "hodECE": {
+        "aliases": [
+            "Head of the department electronics",
+            "Head of the department electronics and communications",
+            "Head of the department in electronics and communications",
+            "electronics: and communications Head of the department ",
+            "electronics, head of the department ",
+            "Head of the department electronics and communication",
+            "H.O.D.E.C.E",
+            "h-o-d-e-c-e",
+            "h-o-d of e-c-e",
+            "h-o-d electronics"
+        ],
+        "keyword": "hodECE",
+        "link":"./pano/hodece.html"
+    },
+    "hodCSE": {
+        "aliases": [
+            "Head of the department computer science",
+            "Head of the department computer science and engineering",
+            "computer science and engineering Head of the department ",
+            "computer science Head of the department ",
+
+            
+
+            "Head of the department c-s-e",
+            "H.O.D.C.S.E",
+            "h-o-d-c-s-e",
+            "h-o-d c-s-e",
+            "h-o-d c-s",
+            "h.o.d computer science"
+        ],
+        "keyword": "hodCSE",
+        "link":"./pano/hodcse.html"
+    },
+    "hodEEE": {
+        "aliases": [
+            "Head of the department electrical and electronics engineering",
+            "Head of the department electrical and electronics",
+            "electrical and electronics Head of the department ",
+            "electrical Head of the department ",
+
+            
+
+            "Head of the department electrical",
+            "H-O-D-triple-E"
+
+        ],
+        "keyword": "hodEEE",
+        "link":"./pano/hodeee.html"
+    },
+    "hodCE": {
+        "aliases": [
+            "Head of the department civil engineering",
+            "Head of the department civil",
+            "civil engineering Head of the department ",
+            "civil Head of the department ",
+            "Head of the department civil",
+            "h-o-d c-e",
+            "h-o-d civil"
+        ],
+        "keyword": "hodCE",
+        "link":"./pano/hodce.html"
+    },
+    "hodME": {
+        "aliases": [
+            "Head of the department Mechanical engineering",
+            "Head of the department mechanical",
+            "mechanical engineering Head of the department ",
+            "mechanical Head of the department ",
+            
+            "h-o-d m-e",
+            "h-o-d mechanical"
+        ],
+        "keyword": "hodME",
+        "link":"./pano/hodme.html"
+    },
+    "office_room": {
+        "aliases": [
+            "officeroom",
+            "office",
+            "office room",
+            "administration"
+        ],
+        "keyword": "office_room",
+        "link":"./pano/office.html"
+    }
+}
