@@ -10,6 +10,8 @@
 //       .then(data => {
 //         console.log(data)
 //       })
+
+
 const cardsContainer = document.querySelector('#cards-container');
 
 document.addEventListener('keydown', function(event) {
@@ -33,19 +35,6 @@ function deptExpander(dept) {
   return departmentMap[dept] || 'Non-Teaching Staff';
 }
 
-// function speak(text) {
-//   // Create a SpeechSynthesisUtterance
-//   const utterance = new SpeechSynthesisUtterance(text);
-
-//   // Select a voice
-//   const voices = speechSynthesis.getVoices();
-//   utterance.voice = voices[3]; // Choose a specific voice
-
-//   // Speak the text
-//   speechSynthesis.speak(utterance);
-// }
-
-// Establish a WebSocket connection
 // Connect to the WebSocket server
 const socket = new WebSocket('ws://localhost:8766');  // Change the URL if needed
 
@@ -61,6 +50,7 @@ socket.onmessage = function(event) {
     // Handle the message received from the server
     if (event.data === 'face detected') {
         window.location.href = 'demo.html';
+        socket.send('Greetings! Ready to guide you to your destination on our campus.')
     } else if (event.data === 'no face detected') {
         window.location.href = 'clock.html';
     }
@@ -105,14 +95,16 @@ function renderCharacters(faculties) {
     div.appendChild(dept);
     div.appendChild(room);
 
-    div.addEventListener('click', () => showPopup(faculty)); // Add click event listener to open popup
+    div.addEventListener('click', () => showPopup(faculty)); 
 
     cardsContainer.appendChild(div);
   });
 }
 
+
 function showPopup(faculty) {
   // Create a popup div
+  console.log('clicked')
   const popupDiv = document.createElement('div');
   popupDiv.classList =
     'fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 staffPopup '; // Positioning and styling
@@ -121,6 +113,8 @@ function showPopup(faculty) {
   const popupContainer = document.createElement('div');
   popupContainer.classList = 'bg-white p-8 rounded-lg shadow-lg'; // Styling for the popup container
 
+
+  
   // Create content for the popup container
   const popupContent = document.createElement('div');
   popupContent.innerHTML = `
@@ -134,7 +128,7 @@ function showPopup(faculty) {
     <p class="text-2xl text-gray-700">Room: ${faculty.room_no}</p>
     <div class="btn btn__primary mx-0 my-6 " onclick="window.location.href = './pano/${
       faculty.isHall == "TRUE"
-        ? faculty.room_no
+        ? faculty.name.replace(/\s+/g, '').toLowerCase()
         : (faculty.designation.toLowerCase().includes('hod') &&
            !faculty.designation.toLowerCase().includes('ahod'))
         ? 'hod'+faculty.dept
@@ -164,17 +158,7 @@ function showPopup(faculty) {
                         </div>
   `;
 
-
-  // speak(
-  //   `Staff room of ${faculty.name} is located in ${
-  //     faculty.room_no
-  //   }. Click on the button for the navigation to ${
-  //     faculty.isHall=='TRUE'
-  //       ? faculty.room_no
-  //       : faculty.room_no.split(' ')[0] + ' Block'
-  //   }`
-  // );
-  speak(  faculty.isHall == "TRUE" ? `${faculty.name} is located in ${
+  socket.send(  faculty.isHall == "TRUE" ? `${faculty.name} is located in ${
     faculty.room_no.split(' ')[0]
   } Block. Click on the button for the navigation to ${
     faculty.name

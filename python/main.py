@@ -18,7 +18,7 @@ engine.setProperty('voice', voices[1].id)  # Change index to select a different 
 # Configurable parameters
 FACE_DETECTION_MODEL_PATH = 'D:/main project/ElectronGUI/python/haarcascade_frontalface_default.xml'
 ACTIVATION_THRESHOLD = 2  # seconds for face detected debounce interval
-DEACTIVATION_THRESHOLD = 10  # seconds for no face detected debounce interval
+DEACTIVATION_THRESHOLD = 180  # seconds for no face detected debounce interval
 WEBSOCKET_URI = 'ws://localhost:8766'  # WebSocket URI
 VIDEO_SOURCE = 0  # Default camera
 

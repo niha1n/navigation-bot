@@ -63,7 +63,7 @@ function modifyFolder(inputPath, inputName) {
 // Example usage
 const folderPath = 'D:/main project/pano/kblock/app-files';
 const destinationDirectory = 'D:/main project/ElectronGUI/navbot/src/renderer/pano';
-const newName = 'viceprincipal';
+const newName = 'A-block';
 modifyFolder(folderPath, newName);
 
 

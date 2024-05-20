@@ -151,17 +151,7 @@
                 window.SpeechRecognitionEvent || window.webkitSpeechRecognitionEvent;
             var transcript;
 
-            const colors = [
-                "bursar",
-                "anil",
-                "abraham",
-                "bisque",
-                "black",
-                "blue",
-                "brown",
-                "chocolate",
-                "coral",
-            ];
+            const colors = [];
             const grammar = `#JSGF V1.0; grammar colors; public <color> = ${colors.join(
                 " | "
             )};`;
